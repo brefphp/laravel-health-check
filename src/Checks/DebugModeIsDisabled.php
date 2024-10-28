@@ -4,6 +4,7 @@ namespace Bref\LaravelHealthCheck\Checks;
 
 use Bref\LaravelHealthCheck\Check;
 use Bref\LaravelHealthCheck\CheckResult;
+use Illuminate\Support\Facades\Config;
 
 class DebugModeIsDisabled extends Check
 {
@@ -14,6 +15,6 @@ class DebugModeIsDisabled extends Check
 
     public function check(): CheckResult
     {
-        return config('app.debug') ? $this->error() : $this->ok();
+        return Config::get('app.debug') ? $this->error() : $this->ok();
     }
 }
