@@ -15,7 +15,7 @@ abstract class Check
 
     public function warning(?string $message = null): CheckResult
     {
-        return CheckResult::error($this->getName(), $message);
+        return CheckResult::warning($this->getName(), $message);
     }
 
     public function error(?string $message = null): CheckResult
