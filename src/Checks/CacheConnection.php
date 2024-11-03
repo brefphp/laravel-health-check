@@ -6,6 +6,7 @@ use Bref\LaravelHealthCheck\Check;
 use Bref\LaravelHealthCheck\CheckResult;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
+use Throwable;
 
 class CacheConnection extends Check
 {
@@ -16,8 +17,12 @@ class CacheConnection extends Check
 
     public function check(): CheckResult
     {
-        if (! $this->canWriteValuesToCache()) {
-            return $this->error();
+        try {
+            if (! $this->canWriteValuesToCache()) {
+                return $this->error();
+            }
+        } catch (Throwable $e) {
+            return $this->error($e->getMessage());
         }
 
         return $this->ok();
