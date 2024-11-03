@@ -18,7 +18,7 @@ class LambdaMemoryLimit extends Check
         $recommendedMemory = 1024;
 
         if ($memoryAvailableInMb < $recommendedMemory) {
-            return $this->error("The memory limit configured is $memoryAvailableInMb MB, but $recommendedMemory MB is recommended.");
+            return $this->warning("The memory limit configured is $memoryAvailableInMb MB, but $recommendedMemory MB is recommended.");
         }
 
         return $this->ok();
